@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head> 
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Form</h1>
+    <!--
+    <form action="#" th:action="@{/greeting}" th:object="${greeting}" method="post">
+    	<p>Id: <input type="text" th:field="*{id}" /></p>
+        <p>Message: <input type="text" th:field="*{content}" /></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+    -->
+    <form action="#" th:action="@{/greeting}" method="post">
+    	<p>Id: <input type="text" th:field="*{greeting.id}" /></p>
+        <p>Message: <input type="text" th:field="*{greeting.content}" /></p>
+        <p>Topic:
+        <select class="form-control" id="dropDownList" th:field="*{greetingForm.topic}">
+            <option th:each="topic : ${greetingForm.topics}" th:value="${topic}" th:text="${topic}"></option>
+        </select>
+        </p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+    <div id="result">
+        <h1>Result</h1>
+        <p th:text="'id: ' + ${sentGreeting?.id}" />
+        <p th:text="'content: ' + ${sentGreeting?.content}" />
+    </div>
+</body>
+</html>

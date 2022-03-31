@@ -1,0 +1,11 @@
+example:
+  kafka:
+    consumer-enabled: ${consumer-enabled:true}
+server:
+  port: 8081
+spring:
+  kafka:
+    consumer:
+      group-id: group-1
+      auto-offset-reset: earliest
+      bootstrap-servers: localhost:9092

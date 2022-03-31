@@ -1,0 +1,21 @@
+example:
+  kafka:
+    consumer-enabled: ${consumer-enabled:true}
+server:
+  port: 8080
+spring:
+  kafka:
+    consumer:
+      group-id: json-example
+      auto-offset-reset: earliest
+      bootstrap-servers: localhost:9092
+      # key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      # value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      # Without this trusted packages, the json deserializer used by the "transaction-1" topic won't work
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: '*'
+    listener:
+      ack-mode: manual_immediate
